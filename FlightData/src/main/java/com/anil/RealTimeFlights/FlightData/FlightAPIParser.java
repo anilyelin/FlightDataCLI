@@ -47,7 +47,7 @@ public class FlightAPIParser {
 		JSONObject obj = (JSONObject) parser.parse(inline);
 		JSONArray arr = (JSONArray) obj.get("states");
 		for(int i=0;i<arr.size();i++) {
-			System.out.println(arr.get(i));
+			System.out.println(String.valueOf(i)+"  "+arr.get(i));
 			resultList.add((JSONArray) arr.get(i));
 		}
 		return resultList;
@@ -70,12 +70,26 @@ public class FlightAPIParser {
 		
 	}
 	
+	public ArrayList<String> getCountries(ArrayList<JSONArray> data) {
+		ArrayList<String> results = new ArrayList<>();
+		for(int i=0;i<data.size();i++) {
+			JSONArray tmp = (JSONArray) data.get(i);
+			String country = (String) tmp.get(2);
+			results.add(country);
+			
+		}
+		
+		return results;
+	}
+	
 	public static void main(String[] args) throws IOException, ParseException {
 		FlightAPIParser f = new FlightAPIParser();
 		ArrayList<JSONArray> j = f.getFlightData();
 		//System.out.println(j);
 		ArrayList<String> cs = f.getCallSigns(j);
-		System.out.println(cs);
+		//System.out.println(cs);
+		ArrayList<String> countries = f.getCountries(j);
+		System.out.println(countries);
 	}
 	
 	
