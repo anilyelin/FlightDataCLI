@@ -70,6 +70,11 @@ public class FlightAPIParser {
 		
 	}
 	
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 */
 	public ArrayList<String> getCountries(ArrayList<JSONArray> data) {
 		ArrayList<String> results = new ArrayList<>();
 		for(int i=0;i<data.size();i++) {
