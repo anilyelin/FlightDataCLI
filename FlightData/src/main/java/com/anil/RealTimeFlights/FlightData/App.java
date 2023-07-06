@@ -22,8 +22,14 @@ public class App {
 	
     public static void main( String[] args ) throws IOException, ParseException, org.apache.commons.cli.ParseException
     {
-    	
-    	
+    	//Entry point of this program starting with an ascii art title
+    	String asciiArt = "    _________       __    __  ____        __                 ____   ___\n"
+    			+ "   / ____/ (_)___ _/ /_  / /_/ __ \\____ _/ /_____ _   _   __/ __ \\ <  /\n"
+    			+ "  / /_  / / / __ `/ __ \\/ __/ / / / __ `/ __/ __ `/  | | / / / / / / / \n"
+    			+ " / __/ / / / /_/ / / / / /_/ /_/ / /_/ / /_/ /_/ /   | |/ / /_/ / / /  \n"
+    			+ "/_/   /_/_/\\__, /_/ /_/\\__/_____/\\__,_/\\__/\\__,_/    |___/\\____(_)_/   \n";
+    	//System.out.println(asciiArt);
+    	ColorOutput.coloredTextOutput(asciiArt ,"purple");
     	ArrayList<String> countries = new ArrayList<>();
     	countries.add("Germany");
     	countries.add("Switzerland");
