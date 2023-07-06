@@ -39,9 +39,9 @@ public class App {
     	
     	
     	Option help = new Option("help", "print this message");
-    	Option version = new Option("version", "Show version number");
+    	Option flight = new Option("flight", "Show specific flight e.g. LH 1234");
     	options.addOption(help);
-    	options.addOption(version);
+    	options.addOption(flight);
     	CommandLineParser parser = new DefaultParser();
     	CommandLine cmd = parser.parse(options, args);
     	
@@ -50,9 +50,17 @@ public class App {
     	}
     	
     	HelpFormatter formatter = new HelpFormatter();
-    	formatter.printHelp("FlightData <country>", options);
-    	System.out.println("Entered country is: "+args[0]);
-    	String userInput = args[0];
+    	String helpString = "FlightData <country> \nCurrenlty supported countries are [Germany, Switzerland]";
+    	formatter.printHelp(helpString, options);
+    	String userInput;
+    	try {
+    		userInput = args[0];
+    		System.out.println("Entered country is: "+args[0]);}
+    	catch(Exception e) {
+    		userInput = "";
+    		formatter.printHelp(helpString, options);
+    	}
+    	//String userInput = args[0];
     	if(!countries.contains(userInput)) {
     		ColorOutput.errorMessage("Country not supported yet");
     	}
