@@ -47,7 +47,7 @@ public class FlightAPIParser {
 		JSONObject obj = (JSONObject) parser.parse(inline);
 		JSONArray arr = (JSONArray) obj.get("states");
 		for(int i=0;i<arr.size();i++) {
-			System.out.println(String.valueOf(i)+"  "+arr.get(i));
+			System.out.println(String.valueOf(i)+" "+arr.get(i));
 			resultList.add((JSONArray) arr.get(i));
 		}
 		return resultList;
@@ -87,6 +87,42 @@ public class FlightAPIParser {
 		return results;
 	}
 	
+	public ArrayList<Double> getLongitude(ArrayList<JSONArray> data){
+		ArrayList<Double> results = new ArrayList<>();
+		for(int i=0;i<data.size();i++) {
+			JSONArray tmp = (JSONArray) data.get(i);
+			Double longitude = (Double) tmp.get(5);
+			results.add(longitude);
+		}
+		return results;
+	}
+	
+	public ArrayList<Double> getLatitude(ArrayList<JSONArray> data){
+		ArrayList<Double> results = new ArrayList<>();
+		for(int i=0;i<data.size();i++) {
+			JSONArray tmp = (JSONArray) data.get(i);
+			Double latitude = (Double) tmp.get(6);
+			results.add(latitude);
+		}
+		return results;
+	}
+	
+	public void aggregateData(ArrayList<String> flightNumber, ArrayList<String> originCountry, ArrayList<Double> longitude, ArrayList<Double> lat) {
+		int arrLength1 = flightNumber.size();
+		int arrLength2 = originCountry.size();
+		int arrLength3 = longitude.size();
+		int arrLength4 = lat.size();
+		if(arrLength1 != arrLength2  || arrLength1 != arrLength3 || arrLength1 != arrLength4 || arrLength2 != arrLength3 || arrLength2 != arrLength4 ){
+			System.err.print("[ERROR] Arrays do not have the same size!");
+		}
+		System.out.println("Record     Callsign     Origin Country     Longitude     Latitude");
+		for(int i=0;i<arrLength1;i++) {
+			
+			System.out.println("Record ["+Integer.valueOf(i)+"] "+flightNumber.get(i)+"     "+originCountry.get(i)+"                  "+longitude.get(i)+"     "+lat.get(i));
+		}
+		
+	}
+	
 	public static void main(String[] args) throws IOException, ParseException {
 		FlightAPIParser f = new FlightAPIParser();
 		ArrayList<JSONArray> j = f.getFlightData();
@@ -94,7 +130,12 @@ public class FlightAPIParser {
 		ArrayList<String> cs = f.getCallSigns(j);
 		//System.out.println(cs);
 		ArrayList<String> countries = f.getCountries(j);
-		System.out.println(countries);
+		//System.out.println(countries);
+		ArrayList<Double> longitude = f.getLongitude(j);
+		System.out.println(longitude);
+		ArrayList<Double> latitude = f.getLatitude(j);
+		System.out.println(latitude);
+		f.aggregateData(cs, countries, longitude, latitude);
 	}
 	
 	

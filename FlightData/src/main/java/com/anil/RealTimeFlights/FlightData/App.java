@@ -69,7 +69,11 @@ public class App {
     		ArrayList<JSONArray> j = f.getFlightData();
     		//System.out.println(j);
     		ArrayList<String> cs = f.getCallSigns(j);
-    		System.out.println(cs);
+    		ArrayList<String> country = f.getCountries(j);
+    		ArrayList<Double> lat = f.getLatitude(j);
+    		ArrayList<Double> lo = f.getLongitude(j);
+    		//System.out.println(cs);
+    		f.aggregateData(cs,country,lat,lo);
     	}
     	
     
