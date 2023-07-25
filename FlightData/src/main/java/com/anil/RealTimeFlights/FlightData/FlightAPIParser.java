@@ -115,10 +115,11 @@ public class FlightAPIParser {
 		if(arrLength1 != arrLength2  || arrLength1 != arrLength3 || arrLength1 != arrLength4 || arrLength2 != arrLength3 || arrLength2 != arrLength4 ){
 			System.err.print("[ERROR] Arrays do not have the same size!");
 		}
-		System.out.println("Record     Callsign     Origin Country     Longitude     Latitude");
+		//System.out.println("Record     Callsign     Origin Country     Longitude     Latitude");
 		for(int i=0;i<arrLength1;i++) {
 			
-			System.out.println("Record ["+Integer.valueOf(i)+"] "+flightNumber.get(i)+"     "+originCountry.get(i)+"                  "+longitude.get(i)+"     "+lat.get(i));
+			//System.out.println("Record ["+Integer.valueOf(i)+"] "+flightNumber.get(i)+"     "+originCountry.get(i)+"                  "+longitude.get(i)+"     "+lat.get(i));
+			System.out.format("Record %2d - Flight Number %8s - Origin Country %30s - Position (%f,%f)\n",i, flightNumber.get(i), originCountry.get(i), longitude.get(i), lat.get(i));
 		}
 		
 	}
