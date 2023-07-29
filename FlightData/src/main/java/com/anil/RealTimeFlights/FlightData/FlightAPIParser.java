@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.anil.util.Constants;
+
 /** this class will parse the flight data from the opensky JSON API**/
 
 public class FlightAPIParser {
@@ -118,8 +120,7 @@ public class FlightAPIParser {
 		//System.out.println("Record     Callsign     Origin Country     Longitude     Latitude");
 		for(int i=0;i<arrLength1;i++) {
 			
-			//System.out.println("Record ["+Integer.valueOf(i)+"] "+flightNumber.get(i)+"     "+originCountry.get(i)+"                  "+longitude.get(i)+"     "+lat.get(i));
-			System.out.format("Record %2d - Flight Number %8s - Origin Country %30s - Position (%f,%f)\n",i, flightNumber.get(i), originCountry.get(i), longitude.get(i), lat.get(i));
+			System.out.format(Constants.ANSI_RED+"Record "+Constants.ANSI_RESET+"%2d - Flight Number "+Constants.ANSI_PURPLE+"%8s"+Constants.ANSI_RESET+" - Origin Country %30s - Position (%f,%f)\n",i, flightNumber.get(i), originCountry.get(i), longitude.get(i), lat.get(i));
 		}
 		
 	}
